@@ -11,7 +11,7 @@ import com.cybage.models.Batches;
 import com.cybage.models.Player;
 
 @Service
-public class Playerservice {
+public class PlayerService {
 	@Autowired
 	PlayersDao playerDao;
 	
@@ -25,8 +25,8 @@ public class Playerservice {
 		// TODO Auto-generated method stub
 		return playerDao.findAll();
 	}
-public Player getPlayerById(int player_id) {
+public Player getPlayerById(int playerId) {
 		
-		return playerDao.findById(player_id).get();
+		return playerDao.findById(playerId).get();
 	}
 }

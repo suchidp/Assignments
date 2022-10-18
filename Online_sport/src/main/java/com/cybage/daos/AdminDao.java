@@ -12,7 +12,7 @@ import com.cybage.models.Admin;
 import com.cybage.models.Player;
 import com.cybage.models.Sport;
 
-public interface Admindao extends JpaRepository<Admin, Integer>{
+public interface AdminDao extends JpaRepository<Admin, Integer>{
 	@Transactional
 	
 	

@@ -3,16 +3,16 @@ package com.cybage.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.cybage.daos.Admindao;
+import com.cybage.daos.AdminDao;
 
 import com.cybage.models.Admin;
 
 
 
 @Service
-public class Adminservice {
+public class AdminService {
 	@Autowired
-	Admindao admindao;
+	AdminDao admindao;
 	
 		
 	public Admin findAdminByEmailAndPassword(String email, String password) {

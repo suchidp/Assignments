@@ -1,4 +1,4 @@
-package com.cybage.service;
+/*package com.cybage.service;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -10,19 +10,19 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import com.cybage.daos.PlayersDao;
-import com.cybage.daos.PlayersubscriptionDao;
+import com.cybage.daos.PlayerSubscriptionDao;
 import com.cybage.models.Manager;
-import com.cybage.models.Playersubscription;
+import com.cybage.models.PlayerSubscription;
 
 @SpringBootTest
-public class PlayersubscriptionserviceTest {
+public class PlayerSubscriptionServiceTest {
 	 @MockBean
-	    PlayersubscriptionDao playersubscription;
+	    PlayerSubscriptionDao playersubscription;
 	 
 	 @Test
 	    void getSubscriptionById() {
-		 Playersubscription playersub=new Playersubscription();
-	        Optional<Playersubscription> playersub1=Optional.of(playersub);
+		 PlayerSubscription playersub=new PlayerSubscription();
+	        Optional<PlayerSubscription> playersub1=Optional.of(playersub);
 	        playersub.setPlayersubscription_id(21);
 
 	        Mockito.when(playersubscription.findById(21)).thenReturn(playersub1);
@@ -33,14 +33,14 @@ public class PlayersubscriptionserviceTest {
 	
 	    @Test
 	    void testselectSubscription() {
-	    	Playersubscription playersub=new Playersubscription();
+	    	PlayerSubscription playersub=new PlayerSubscription();
 	    	playersub.setPlayersubscription_id(11);
 
 	        Mockito.doReturn( playersub).when(playersubscription).save(playersub);
 
 	        assertEquals(11,playersubscription.save(playersub).getPlayersubscription_id());
 	    }
-	   
+	 /*  
 	    
 	    @Test
 	    void testgetPlayersubscription() {
@@ -76,4 +76,4 @@ public class PlayersubscriptionserviceTest {
 
 	        assertEquals(2, playersubscription.getSubscription().size());
 	    }
-}
+}*/

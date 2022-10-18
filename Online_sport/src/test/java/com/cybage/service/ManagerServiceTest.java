@@ -1,4 +1,4 @@
-package com.cybage.service;
+/*package com.cybage.service;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -17,7 +17,7 @@ import com.cybage.models.Manager;
 import com.cybage.models.Player;
 
 @SpringBootTest
-public class ManagerserviceTest {
+public class ManagerServiceTest {
 	@MockBean
 	ManagerDao managerdao;
 	
@@ -76,4 +76,4 @@ public class ManagerserviceTest {
 
 
 
-}
+}*/

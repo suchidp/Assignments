@@ -1,6 +1,7 @@
 package com.cybage.models;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -12,25 +13,29 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import org.springframework.stereotype.Component;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 @Entity
 @Table(name="manager_subscription")
 @Component
 
-@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "managersubscription_id")
-public class Manager_subscription {
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "managerSubscriptionId")
+public class ManagerSubscription {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-     private int managersubscription_id;
-	private Enrollmentstatus enrollmentstatus ;
+     private int managerSubscriptionId;
+	private EnrollmentStatus enrollmentstatus ;
 	
 	@Column(length = 20, nullable = false)
 	  private String offer;
@@ -41,13 +46,30 @@ public class Manager_subscription {
 		  private Set<Sport> sport = new HashSet<>();
 	 
 	 
+	
+	
+
+	
+	/*
+	@OneToMany(mappedBy = "mbatch")
+	@JsonManagedReference(value="managerSubscriptions")
+    @JsonIgnore
+	private List<ManagerSubscription> managerSubscriptions;*/
+	
+	
+	 @ManyToOne
+		@JoinColumn(name="sport_id")
+	  @JsonBackReference
+		private Sport manager_sub;
+	 
+	 
 	 @ManyToMany(mappedBy = "manager_subscription",fetch = FetchType.EAGER	)
 	  @JsonIgnore
 	  private Set<Batches> batches = new HashSet<>();
 	 
 	 @OneToOne(cascade = CascadeType.ALL)
 	    @JoinColumn(name = "playersubscription_id")
-	    private Playersubscription playersubscription;
+	    private PlayerSubscription playersubscription;
 	/* 
 	 @ManyToMany(mappedBy = "manager_subscription2",fetch = FetchType.LAZY	)
 	  @JsonIgnore
@@ -57,41 +79,43 @@ public class Manager_subscription {
 	    private Manager manager;
 
 
-	public Manager_subscription() {
+	public ManagerSubscription() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
 
-	public Manager_subscription(int managersubscription_id, Enrollmentstatus enrollmentstatus, String offer,
-			Set<Sport> sport, Set<Batches> batches, Playersubscription playersubscription, Manager manager) {
+	public ManagerSubscription(int managerSubscriptionId, EnrollmentStatus enrollmentstatus, String offer,
+			Set<Sport> sport, Sport manager_sub, Set<Batches> batches, PlayerSubscription playersubscription,
+			Manager manager) {
 		super();
-		this.managersubscription_id = managersubscription_id;
+		this.managerSubscriptionId = managerSubscriptionId;
 		this.enrollmentstatus = enrollmentstatus;
 		this.offer = offer;
 		this.sport = sport;
+		this.manager_sub = manager_sub;
 		this.batches = batches;
 		this.playersubscription = playersubscription;
 		this.manager = manager;
 	}
 
 
-	public int getManagersubscription_id() {
-		return managersubscription_id;
+	public int getManagerSubscriptionId() {
+		return managerSubscriptionId;
 	}
 
 
-	public void setManagersubscription_id(int managersubscription_id) {
-		this.managersubscription_id = managersubscription_id;
+	public void setManagerSubscriptionId(int managerSubscriptionId) {
+		this.managerSubscriptionId = managerSubscriptionId;
 	}
 
 
-	public Enrollmentstatus getEnrollmentstatus() {
+	public EnrollmentStatus getEnrollmentstatus() {
 		return enrollmentstatus;
 	}
 
 
-	public void setEnrollmentstatus(Enrollmentstatus enrollmentstatus) {
+	public void setEnrollmentstatus(EnrollmentStatus enrollmentstatus) {
 		this.enrollmentstatus = enrollmentstatus;
 	}
 
@@ -116,6 +140,16 @@ public class Manager_subscription {
 	}
 
 
+	public Sport getManager_sub() {
+		return manager_sub;
+	}
+
+
+	public void setManager_sub(Sport manager_sub) {
+		this.manager_sub = manager_sub;
+	}
+
+
 	public Set<Batches> getBatches() {
 		return batches;
 	}
@@ -126,12 +160,12 @@ public class Manager_subscription {
 	}
 
 
-	public Playersubscription getPlayersubscription() {
+	public PlayerSubscription getPlayersubscription() {
 		return playersubscription;
 	}
 
 
-	public void setPlayersubscription(Playersubscription playersubscription) {
+	public void setPlayersubscription(PlayerSubscription playersubscription) {
 		this.playersubscription = playersubscription;
 	}
 
@@ -148,13 +182,16 @@ public class Manager_subscription {
 
 	@Override
 	public String toString() {
-		return "Manager_subscription [managersubscription_id=" + managersubscription_id + ", enrollmentstatus="
-				+ enrollmentstatus + ", offer=" + offer + ", sport=" + sport + ", batches=" + batches
-				+ ", playersubscription=" + playersubscription + ", manager=" + manager + "]";
+		return "ManagerSubscription [managerSubscriptionId=" + managerSubscriptionId + ", enrollmentstatus="
+				+ enrollmentstatus + ", offer=" + offer + ", sport=" + sport + ", manager_sub=" + manager_sub
+				+ ", batches=" + batches + ", playersubscription=" + playersubscription + ", manager=" + manager + "]";
 	}
 
 
 	
+
+	
+
 
 
 	

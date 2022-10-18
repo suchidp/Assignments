@@ -25,11 +25,11 @@ import com.cybage.dto.LoginRequest;
 import com.cybage.exception.CustomException;
 import com.cybage.models.Batches;
 import com.cybage.models.Player;
-import com.cybage.models.Playersubscription;
-import com.cybage.service.Adminservice;
-import com.cybage.service.Playerservice;
-import com.cybage.service.Playersubscriptionservice;
-import com.cybage.service.Sportservice;
+import com.cybage.models.PlayerSubscription;
+import com.cybage.service.AdminService;
+import com.cybage.service.PlayerService;
+import com.cybage.service.PlayerSubscriptionService;
+import com.cybage.service.SportService;
 
 
 @RestController
@@ -37,14 +37,14 @@ import com.cybage.service.Sportservice;
 @RequestMapping("/player")
 @CrossOrigin(origins = "*")
 @Transactional
-public class Playercontroller {
+public class PlayerController {
 	
 	//static Logger logger=LogManager.getLogger(Playercontroller.class);
 	@Autowired
-	Playerservice playerservice;
+	PlayerService playerservice;
 	
 	@Autowired
-	Playersubscriptionservice playersubscriptionservice;
+	PlayerSubscriptionService playersubscriptionservice;
 	
 	
 	//Register login pf player
@@ -62,16 +62,16 @@ public class Playercontroller {
 	}
 	
 //Player operation
-	@GetMapping("/getplayer")
+	@GetMapping("")
 	public List<Player> getPlayer()
 	{
 		return playerservice.getPlayer();
 	}
 	
-	@GetMapping("/findplayer/{player_id}")
-	public ResponseEntity<?> getPlayerById(@PathVariable int player_id)throws CustomException{
-		System.out.println("player details "+ player_id);
-		Player player = playerservice.getPlayerById(player_id);
+	@GetMapping("/{playerId}")
+	public ResponseEntity<?> getPlayerById(@PathVariable int playerId)throws CustomException{
+		System.out.println("player details "+ playerId);
+		Player player = playerservice.getPlayerById(playerId);
 		if(player==null){
 			throw new CustomException("player not found");
 		}
@@ -86,8 +86,8 @@ public class Playercontroller {
 		
 	}*/
 	
-@GetMapping("/getplayersuscription")
-public List<Playersubscription> getPlayersubscription()
+@GetMapping("/{playerId}/playerSubcription")
+public List<PlayerSubscription> getPlayersubscription()
 {
 	return playersubscriptionservice.getPlayersubscription();
 }

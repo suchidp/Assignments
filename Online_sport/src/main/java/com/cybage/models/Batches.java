@@ -36,11 +36,19 @@ public class Batches {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-     private int batch_id;
+     private int batchId;
+	
 	@Column(length = 20, nullable = false)
-  private String batch_name;
+  private String batchName;
 	
+	/*
+	  @ManyToOne
+	  @JsonBackReference(value="managerSubscriptions")
+		@JoinColumn(name="managersubscription_id")
+	 
+		private ManagerSubscription mbatch;
 	
+	*/
 	@ManyToMany(fetch = FetchType.EAGER,
 		      cascade =CascadeType.ALL
 		        
@@ -48,7 +56,7 @@ public class Batches {
 		  @JoinTable(name = "batches_managersubscription",
 		        joinColumns = { @JoinColumn(name = "batch_id") },
 		        inverseJoinColumns = { @JoinColumn(name = "managersubscription_id") })
-		  private Set<Manager_subscription> manager_subscription = new HashSet<>();
+		  private Set<ManagerSubscription> manager_subscription = new HashSet<>();
 	
 		  @ManyToOne
 			@JoinColumn(name="manager_id")
@@ -60,36 +68,36 @@ public class Batches {
 			// TODO Auto-generated constructor stub
 		}
 
-		public Batches(int batch_id, String batch_name, Set<Manager_subscription> manager_subscription,
+		public Batches(int batchId, String batchName, Set<ManagerSubscription> manager_subscription,
 				Manager manager_batch) {
 			super();
-			this.batch_id = batch_id;
-			this.batch_name = batch_name;
+			this.batchId = batchId;
+			this.batchName = batchName;
 			this.manager_subscription = manager_subscription;
 			this.manager_batch = manager_batch;
 		}
 
-		public int getBatch_id() {
-			return batch_id;
+		public int getBatchId() {
+			return batchId;
 		}
 
-		public void setBatch_id(int batch_id) {
-			this.batch_id = batch_id;
+		public void setBatchId(int batchId) {
+			this.batchId = batchId;
 		}
 
-		public String getBatch_name() {
-			return batch_name;
+		public String getBatchName() {
+			return batchName;
 		}
 
-		public void setBatch_name(String batch_name) {
-			this.batch_name = batch_name;
+		public void setBatchName(String batchName) {
+			this.batchName = batchName;
 		}
 
-		public Set<Manager_subscription> getManager_subscription() {
+		public Set<ManagerSubscription> getManager_subscription() {
 			return manager_subscription;
 		}
 
-		public void setManager_subscription(Set<Manager_subscription> manager_subscription) {
+		public void setManager_subscription(Set<ManagerSubscription> manager_subscription) {
 			this.manager_subscription = manager_subscription;
 		}
 
@@ -103,9 +111,15 @@ public class Batches {
 
 		@Override
 		public String toString() {
-			return "Batches [batch_id=" + batch_id + ", batch_name=" + batch_name + ", manager_subscription="
+			return "Batches [batchId=" + batchId + ", batchName=" + batchName + ", manager_subscription="
 					+ manager_subscription + ", manager_batch=" + manager_batch + "]";
 		}
+
+		
+		
+		
+		
+
 	
 	
 	

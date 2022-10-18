@@ -13,39 +13,39 @@ import com.cybage.models.Batches;
 
 
 @Service
-public class Batchesservice {
+public class BatchesService {
 	
 	@Autowired
 	BatchesDao batchesdao;
 	
 	public String addBatches(Batches batches) {
 		Batches addBatches = batchesdao.save(batches);
-		return addBatches.getBatch_name()
+		return addBatches.getBatchName()
 				+",sucessfully added with id : "
-				 +addBatches.getBatch_id();
+				 +addBatches.getBatchId();
 	}
 	
-public Batches getBatchesById(int batch_id) {
+public Batches getBatchesById(int batchId) {
 		
-		return batchesdao.findById(batch_id).get();
+		return batchesdao.findById(batchId).get();
 	}
 
 	
-	public Batches updateBatchesDetails(Batches batches,int batch_id) {
+	public Batches updateBatchesDetails(Batches batches,int batchId) {
 		
-		Batches batches1=batchesdao.getBatchesById(batch_id);
+		Batches batches1=batchesdao.getBatchesById(batchId);
 		
 		
-		batches1.setBatch_name(batches.getBatch_name());
+		batches1.setBatchName(batches.getBatchName());
 		    Batches batchDetails = batchesdao.save(batches1);
 		return batchDetails;
 	}
 	
 	
-public String deleteBatchesDetails(int batch_id) {
+public String deleteBatchesDetails(int batchId) {
 		
-		batchesdao.deleteById(batch_id);;
-		return " deleted successfully with id : "+batch_id;
+		batchesdao.deleteById(batchId);;
+		return " deleted successfully with id : "+batchId;
 	}
 
 	public List<Batches> getBatches() {

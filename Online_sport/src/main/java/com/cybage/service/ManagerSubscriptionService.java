@@ -6,21 +6,21 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.cybage.daos.BatchesDao;
-import com.cybage.daos.Manager_subscriptionDao;
+import com.cybage.daos.ManagerSubscriptionDao;
 import com.cybage.models.Batches;
 import com.cybage.models.Manager;
-import com.cybage.models.Manager_subscription;
+import com.cybage.models.ManagerSubscription;
 import com.cybage.models.Sport;
 
 @Service
-public class Manager_subscriptionservice {
+public class ManagerSubscriptionService {
 	@Autowired
-	Manager_subscriptionDao manager_subscriptionDao;
+	ManagerSubscriptionDao managersubscriptionDao;
 	
 	
-	public Manager_subscription getManagersubscriptionById(int  managersubscription_id) {
+	public ManagerSubscription getManagersubscriptionById(int  managerSubscriptionId) {
 		
-		return manager_subscriptionDao.findById(managersubscription_id).get();
+		return managersubscriptionDao.findById(managerSubscriptionId).get();
 	}
 
 	/*
@@ -50,8 +50,8 @@ public class Manager_subscriptionservice {
 	}
 
 */
-	public List<Manager_subscription> getallmanager_subscription() {
+	public List<ManagerSubscription> getallmanager_subscription() {
 		// TODO Auto-generated method stub
-		return manager_subscriptionDao.findAll();
+		return managersubscriptionDao.findAll();
 	}
 }

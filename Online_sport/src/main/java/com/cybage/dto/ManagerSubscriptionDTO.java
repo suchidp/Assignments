@@ -6,23 +6,23 @@ import com.cybage.models.Batches;
 import com.cybage.models.Manager;
 import com.cybage.models.Sport;
 
-public class Manager_subscriptionDTO {
+public class ManagerSubscriptionDTO {
 	 private Sport sport; 
-	 private Batches batch;
+	  private List<Batches> batches;
 	 private  Manager manager;
 	  private String offer;
 	 
 	 
-	public Manager_subscriptionDTO() {
+	public ManagerSubscriptionDTO() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
 
-	public Manager_subscriptionDTO(Sport sport, Batches batch, Manager manager, String offer) {
+	public ManagerSubscriptionDTO(Sport sport, List<Batches> batches, Manager manager, String offer) {
 		super();
 		this.sport = sport;
-		this.batch = batch;
+		this.batches = batches;
 		this.manager = manager;
 		this.offer = offer;
 	}
@@ -38,13 +38,13 @@ public class Manager_subscriptionDTO {
 	}
 
 
-	public Batches getBatch() {
-		return batch;
+	public List<Batches> getBatches() {
+		return batches;
 	}
 
 
-	public void setBatch(Batches batch) {
-		this.batch = batch;
+	public void setBatches(List<Batches> batches) {
+		this.batches = batches;
 	}
 
 
@@ -70,9 +70,12 @@ public class Manager_subscriptionDTO {
 
 	@Override
 	public String toString() {
-		return "Manager_subscriptionDTO [sport=" + sport + ", batch=" + batch + ", manager=" + manager + ", offer="
+		return "ManagerSubscriptionDTO [sport=" + sport + ", batches=" + batches + ", manager=" + manager + ", offer="
 				+ offer + "]";
 	}
+
+
+	
 
 
 	

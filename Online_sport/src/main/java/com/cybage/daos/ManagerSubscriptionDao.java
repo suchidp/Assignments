@@ -8,14 +8,14 @@ import org.springframework.data.jpa.repository.Query;
 
 import com.cybage.models.Batches;
 import com.cybage.models.Manager;
-import com.cybage.models.Manager_subscription;
+import com.cybage.models.ManagerSubscription;
 import com.cybage.models.Sport;
 
-public interface Manager_subscriptionDao extends JpaRepository<Manager_subscription, Integer>{
+public interface ManagerSubscriptionDao extends JpaRepository<ManagerSubscription, Integer>{
 	@Transactional
 	@Modifying
-	@Query("select a from Manager_subscription a where a.managersubscription_id=:managersubscription_id")
-	Manager getManagersubscriptionById(int managersubscription_id);
+	@Query("select a from ManagerSubscription a where a.managerSubscriptionId=:managerSubscriptionId")
+	public Manager getManagersubscriptionById(int managerSubscriptionId);
 	
 	
 	 //Manager_subscription saveManagersubscription(Manager_subscription manager_subscription,Manager manager, Sport sport, Batches batches,String offer);

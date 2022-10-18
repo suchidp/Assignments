@@ -30,9 +30,9 @@ import com.cybage.models.Batches;
 import com.cybage.models.Manager;
 import com.cybage.models.Player;
 import com.cybage.models.Sport;
-import com.cybage.service.Adminservice;
-import com.cybage.service.Managerservice;
-import com.cybage.service.Sportservice;
+import com.cybage.service.AdminService;
+import com.cybage.service.ManagerService;
+import com.cybage.service.SportService;
 
 
 @RestController
@@ -40,14 +40,14 @@ import com.cybage.service.Sportservice;
 @RequestMapping("/admin")
 @CrossOrigin(origins = "*")
 @Transactional
-public class Admincontroller {
+public class AdminController {
 	//static Logger logger=LogManager.getLogger(Admincontroller.class);
 	@Autowired
-	Adminservice adminservice;
+	AdminService adminservice;
 	@Autowired
-	Sportservice sportservice;
+	SportService sportservice;
 	@Autowired
-	Managerservice managerservice;
+	ManagerService managerservice;
 	
 	/*
 	@PostMapping("/registeradmin")
@@ -66,7 +66,7 @@ public class Admincontroller {
 	
 	
 	
-	@GetMapping("/getManager")
+	@GetMapping("Manager")
 	public List<Manager> getManager()
 	{
 		return managerservice.getall();
@@ -74,12 +74,12 @@ public class Admincontroller {
 	
 	
 	
-	@GetMapping("/findmanager/{manager_id}")
-	public ResponseEntity<?> getManagertById(@PathVariable int manager_id){
-		System.out.println("manager details "+ manager_id);
+	@GetMapping("/Manager/{managerId}")
+	public ResponseEntity<?> getManagertById(@PathVariable int managerId){
+		System.out.println("manager details "+ managerId);
 		
 
-		return ResponseEntity.ok(managerservice.getManagertById(manager_id));
+		return ResponseEntity.ok(managerservice.getManagertById(managerId));
 		
 	}
 	
@@ -104,7 +104,7 @@ public class Admincontroller {
 	
 	
 		
-		@GetMapping("/getSport")
+		@GetMapping("/Sport")
 		public List<Sport> getSportList()
 		{
 			return sportservice.getSportList();
@@ -117,32 +117,32 @@ public class Admincontroller {
 			return new ResponseEntity<>(sportservice.saveSport(sport),HttpStatus.CREATED);
 		}
 		
-		@GetMapping("/findsport/{sport_id}")
-		public ResponseEntity<?> getSportDetailsById(@PathVariable int sport_id){
-			System.out.println("sport details "+ sport_id);
+		@GetMapping("/Sport/{sportId}")
+		public ResponseEntity<?> getSportDetailsById(@PathVariable int sportId){
+			System.out.println("sport details "+ sportId);
 			
 
-			return ResponseEntity.ok(sportservice.getSportById(sport_id));
+			return ResponseEntity.ok(sportservice.getSportById(sportId));
 			
 		}
 		
-		@DeleteMapping("/deletesport/{sport_id}")
-		public ResponseEntity<String> deleteSportDetails(@PathVariable int sport_id){
-			System.out.println("delete sportdetails "+sport_id);
+		@DeleteMapping("/deletesport/{sportId}")
+		public ResponseEntity<String> deleteSportDetails(@PathVariable int sportId){
+			System.out.println("delete sportdetails "+sportId);
 		
 
-			return ResponseEntity.ok(sportservice.deleteSportDetails(sport_id));
+			return ResponseEntity.ok(sportservice.deleteSportDetails(sportId));
 		}
 		
 		@PutMapping("/update1/{id}")
-		public ResponseEntity<?> updateSportDetails(@RequestBody Sport detachedsport,@PathVariable("id") int sport_id)throws CustomException{
+		public ResponseEntity<?> updateSportDetails(@RequestBody Sport detachedsport,@PathVariable("id") int sportId)throws CustomException{
 			
 
 			
 			
 			
-			if(updateSportDetails(detachedsport, sport_id)!=null) {
-				return ResponseEntity.ok(sportservice.updateSportDetails(detachedsport, sport_id));
+			if(updateSportDetails(detachedsport, sportId)!=null) {
+				return ResponseEntity.ok(sportservice.updateSportDetails(detachedsport, sportId));
 				}
 				throw new CustomException("Sport not found");
 			}

@@ -30,14 +30,14 @@ import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 @Table(name="manager")
 @Component
 
-@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "manager_id")
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "managerId")
 public class Manager {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-     private int manager_id;
+     private int managerId;
 	@Column(length = 20, nullable = false)
-     private String manager_name;
+     private String managerName;
 	
 	//@JsonIgnore
 	@NotNull
@@ -50,7 +50,7 @@ public class Manager {
 	
 	@OneToOne(cascade = CascadeType.ALL,fetch = FetchType.LAZY)
     @JoinColumn(name = "managersubscription_id")
-    private Manager_subscription manager_subscription;
+    private ManagerSubscription manager_subscription;
 	
 	@OneToMany(mappedBy = "manager_batch")
 	@JsonManagedReference(value="manager_batch")
@@ -65,7 +65,7 @@ public class Manager {
   @OneToMany(mappedBy ="subscription")
 	 @JsonManagedReference(value="playersubscription")
 	@JsonIgnore
-	    private List<Playersubscription> playersubscription;
+	    private List<PlayerSubscription> playersubscription;
  
 
 public Manager() {
@@ -74,12 +74,13 @@ public Manager() {
 }
 
 
-public Manager(int manager_id, String manager_name, String password, String email,
-		Manager_subscription manager_subscription, List<Batches> batches, Admin ad,
-		List<Playersubscription> playersubscription) {
+public Manager(int managerId, String managerName, @NotNull String password,
+		@NotNull @Email(message = "Please enter the valid email address") String email,
+		ManagerSubscription manager_subscription, List<Batches> batches, Admin ad,
+		List<PlayerSubscription> playersubscription) {
 	super();
-	this.manager_id = manager_id;
-	this.manager_name = manager_name;
+	this.managerId = managerId;
+	this.managerName = managerName;
 	this.password = password;
 	this.email = email;
 	this.manager_subscription = manager_subscription;
@@ -89,23 +90,23 @@ public Manager(int manager_id, String manager_name, String password, String emai
 }
 
 
-public int getManager_id() {
-	return manager_id;
+public int getManagerId() {
+	return managerId;
 }
 
 
-public void setManager_id(int manager_id) {
-	this.manager_id = manager_id;
+public void setManagerId(int managerId) {
+	this.managerId = managerId;
 }
 
 
-public String getManager_name() {
-	return manager_name;
+public String getManagerName() {
+	return managerName;
 }
 
 
-public void setManager_name(String manager_name) {
-	this.manager_name = manager_name;
+public void setManagerName(String managerName) {
+	this.managerName = managerName;
 }
 
 
@@ -129,12 +130,12 @@ public void setEmail(String email) {
 }
 
 
-public Manager_subscription getManager_subscription() {
+public ManagerSubscription getManager_subscription() {
 	return manager_subscription;
 }
 
 
-public void setManager_subscription(Manager_subscription manager_subscription) {
+public void setManager_subscription(ManagerSubscription manager_subscription) {
 	this.manager_subscription = manager_subscription;
 }
 
@@ -159,21 +160,21 @@ public void setAd(Admin ad) {
 }
 
 
-public List<Playersubscription> getPlayersubscription() {
+public List<PlayerSubscription> getPlayersubscription() {
 	return playersubscription;
 }
 
 
-public void setPlayersubscription(List<Playersubscription> playersubscription) {
+public void setPlayersubscription(List<PlayerSubscription> playersubscription) {
 	this.playersubscription = playersubscription;
 }
 
 
 @Override
 public String toString() {
-	return "Manager [manager_id=" + manager_id + ", manager_name=" + manager_name + ", password=" + password
-			+ ", email=" + email + ", manager_subscription=" + manager_subscription + ", batches=" + batches + ", ad="
-			+ ad + ", playersubscription=" + playersubscription + "]";
+	return "Manager [managerId=" + managerId + ", managerName=" + managerName + ", password=" + password + ", email="
+			+ email + ", manager_subscription=" + manager_subscription + ", batches=" + batches + ", ad=" + ad
+			+ ", playersubscription=" + playersubscription + "]";
 }
 
 

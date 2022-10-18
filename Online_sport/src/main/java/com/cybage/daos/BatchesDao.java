@@ -19,11 +19,11 @@ import com.cybage.models.Batches;
 public interface BatchesDao extends JpaRepository<Batches, Integer>{
 	@Transactional
 	@Modifying
-	@Query("select a from Batches a where a.batch_id=:batch_id")
-	Batches getBatchesById(int batch_id);
+	@Query("select a from Batches a where a.batchId=:batchId")
+	public Batches getBatchesById(int batchId);
 
-	@Query(value="select * from Batches c join manager r on c.manager_id=:manager_id and r.manager_id=:manager_id",nativeQuery = true)
-List<Batches> findBymanagerId(int manager_id);
+	@Query(value="select * from Batches c join manager r on c.managerId=:managerId and r.managerId=:managerId",nativeQuery = true)
+    List<Batches> findBymanagerId(int managerId);
 
 	public Batches save(Batches batches);
 	

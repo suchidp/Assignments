@@ -12,7 +12,7 @@ import com.cybage.models.Sport;
 
 
 @Service
-public class Sportservice {
+public class SportService {
 	
 	
 	@Autowired
@@ -20,16 +20,16 @@ public class Sportservice {
 	
 	public String saveSport(Sport sport) {
 		Sport sportdetails = sportdao.save(sport);
-		return sportdetails.getSportname()
+		return sportdetails.getSportName()
 				+", successfully registered";}
 	
 	
-	public Sport updateSportDetails(Sport sport,int sport_id) {
+	public Sport updateSportDetails(Sport sport,int sportId) {
 		
-		Sport sport1=sportdao.findById(sport_id).get();
+		Sport sport1=sportdao.findById(sportId).get();
 		
 		
-		sport1.setSportname(sport1.getSportname());
+		sport1.setSportName(sport1.getSportName());
 		
 
 
@@ -37,16 +37,16 @@ public class Sportservice {
 		return sportdetails;
 	}
 	
-	public Sport getSportById(int sport_id) {
+	public Sport getSportById(int sportId) {
 		
-		return sportdao.findById(sport_id).get();
+		return sportdao.findById(sportId).get();
 	}
 
 	
-	public String deleteSportDetails(int sport_id) {
+	public String deleteSportDetails(int sportId) {
 		
-		sportdao.deleteById(sport_id);
-		return "Sport details deleted successfully with id : "+sport_id;
+		sportdao.deleteById(sportId);
+		return "Sport details deleted successfully with id : "+sportId;
 	}
 
 
@@ -69,8 +69,8 @@ public List<Sport> getSportList()
 
 
 
-public List<Sport> getSportByManager(int manager_id) {
+public List<Sport> getSportByManager(int managerId) {
 	// TODO Auto-generated method stub
-	return sportdao.findSportBymanagerId(manager_id);
+	return sportdao.findSportBymanagerId(managerId);
 }
 }

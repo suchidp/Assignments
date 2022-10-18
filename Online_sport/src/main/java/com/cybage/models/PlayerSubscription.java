@@ -31,28 +31,17 @@ import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 @Table(name="playersubscription")
 @Component
 
-@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "playersubscription_id")
-public class Playersubscription {
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "playerSubscriptionId")
+public class PlayerSubscription {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-     private int playersubscription_id;
+     private int playerSubscriptionId;
 	
-	private Enrollmentstatus enrollmentstatus ;
+	private EnrollmentStatus enrollmentstatus ;
 	@JsonIgnore
 	@OneToOne(mappedBy = "playersubscription")
-    private Manager_subscription manager_subscription;
-	/*
-	@ManyToMany(fetch = FetchType.LAZY,
-		      cascade =CascadeType.ALL
-		        
-		      )
-		  @JoinTable(name = "player_managersubscription",
-		        joinColumns = { @JoinColumn(name = "playersubscription_id") },
-		        inverseJoinColumns = { @JoinColumn(name = "managersubscription_id") })
-		  private Set<Manager_subscription> manager_subscription2 = new HashSet<>();
-	     @JsonIgnore
-		  @OneToOne(mappedBy = "playersubscription")
-		    private Player player;*/
+    private ManagerSubscription manager_subscription;
+
 	
 	 @ManyToOne
 	  @JsonBackReference(value="playersubscription")
@@ -64,42 +53,42 @@ public class Playersubscription {
 	      @JoinColumn(name = "manager_id")
 	      private Manager subscription;
 		 
-	public Playersubscription() {
+	public PlayerSubscription() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public Playersubscription(int playersubscription_id, Enrollmentstatus enrollmentstatus,
-			Manager_subscription manager_subscription, Player play, Manager subscription) {
+	public PlayerSubscription(int playerSubscriptionId, EnrollmentStatus enrollmentstatus,
+			ManagerSubscription manager_subscription, Player play, Manager subscription) {
 		super();
-		this.playersubscription_id = playersubscription_id;
+		this.playerSubscriptionId = playerSubscriptionId;
 		this.enrollmentstatus = enrollmentstatus;
 		this.manager_subscription = manager_subscription;
 		this.play = play;
 		this.subscription = subscription;
 	}
 
-	public int getPlayersubscription_id() {
-		return playersubscription_id;
+	public int getPlayerSubscriptionId() {
+		return playerSubscriptionId;
 	}
 
-	public void setPlayersubscription_id(int playersubscription_id) {
-		this.playersubscription_id = playersubscription_id;
+	public void setPlayerSubscriptionId(int playerSubscriptionId) {
+		this.playerSubscriptionId = playerSubscriptionId;
 	}
 
-	public Enrollmentstatus getEnrollmentstatus() {
+	public EnrollmentStatus getEnrollmentstatus() {
 		return enrollmentstatus;
 	}
 
-	public void setEnrollmentstatus(Enrollmentstatus enrollmentstatus) {
+	public void setEnrollmentstatus(EnrollmentStatus enrollmentstatus) {
 		this.enrollmentstatus = enrollmentstatus;
 	}
 
-	public Manager_subscription getManager_subscription() {
+	public ManagerSubscription getManager_subscription() {
 		return manager_subscription;
 	}
 
-	public void setManager_subscription(Manager_subscription manager_subscription) {
+	public void setManager_subscription(ManagerSubscription manager_subscription) {
 		this.manager_subscription = manager_subscription;
 	}
 
@@ -121,10 +110,12 @@ public class Playersubscription {
 
 	@Override
 	public String toString() {
-		return "Playersubscription [playersubscription_id=" + playersubscription_id + ", enrollmentstatus="
+		return "PlayerSubscription [playerSubscriptionId=" + playerSubscriptionId + ", enrollmentstatus="
 				+ enrollmentstatus + ", manager_subscription=" + manager_subscription + ", play=" + play
 				+ ", subscription=" + subscription + "]";
 	}
+
+	
 
 	
 	

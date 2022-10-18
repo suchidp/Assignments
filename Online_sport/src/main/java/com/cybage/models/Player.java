@@ -26,12 +26,12 @@ import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 @Entity
 @Component
 @Table(name="players")
-@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "player_id")
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "playerId")
 public class Player {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	
-	private int player_id;
+	private int playerId;
 	@JsonIgnore
 	@NotNull
 	private String password;
@@ -45,10 +45,12 @@ public class Player {
 	private String age;
 	 
 	private int weight;
+	
+	
 	@OneToMany(mappedBy ="play")
 	 @JsonManagedReference(value="playersubscription")
 	@JsonIgnore
-	    private List<Playersubscription> playersubscription;
+	    private List<PlayerSubscription> playersubscription;
 	/*
 	 @OneToOne(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
 	    @JoinColumn(name = "playersubscription_id")
@@ -57,11 +59,11 @@ public class Player {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public Player(int player_id, @NotNull String password,
+	public Player(int playerId, @NotNull String password,
 			@NotNull @Email(message = "Please enter the valid email address") String email, String address, String age,
-			int weight, List<Playersubscription> playersubscription) {
+			int weight, List<PlayerSubscription> playersubscription) {
 		super();
-		this.player_id = player_id;
+		this.playerId = playerId;
 		this.password = password;
 		this.email = email;
 		this.address = address;
@@ -69,11 +71,11 @@ public class Player {
 		this.weight = weight;
 		this.playersubscription = playersubscription;
 	}
-	public int getPlayer_id() {
-		return player_id;
+	public int getPlayerId() {
+		return playerId;
 	}
-	public void setPlayer_id(int player_id) {
-		this.player_id = player_id;
+	public void setPlayerId(int playerId) {
+		this.playerId = playerId;
 	}
 	public String getPassword() {
 		return password;
@@ -105,17 +107,18 @@ public class Player {
 	public void setWeight(int weight) {
 		this.weight = weight;
 	}
-	public List<Playersubscription> getPlayersubscription() {
+	public List<PlayerSubscription> getPlayersubscription() {
 		return playersubscription;
 	}
-	public void setPlayersubscription(List<Playersubscription> playersubscription) {
+	public void setPlayersubscription(List<PlayerSubscription> playersubscription) {
 		this.playersubscription = playersubscription;
 	}
 	@Override
 	public String toString() {
-		return "Player [player_id=" + player_id + ", password=" + password + ", email=" + email + ", address=" + address
+		return "Player [playerId=" + playerId + ", password=" + password + ", email=" + email + ", address=" + address
 				+ ", age=" + age + ", weight=" + weight + ", playersubscription=" + playersubscription + "]";
 	}
+	
 	
 	
 	

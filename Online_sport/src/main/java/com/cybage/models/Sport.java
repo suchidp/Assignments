@@ -28,15 +28,15 @@ import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 @Entity
 @Component
 @Table(name="sport")
-@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "sport_id")
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "sportId")
 
 public class Sport {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int sport_id;
+	private int sportId;
 	@Column(length = 20, nullable = false)
-    private String sportname;
+    private String sportName;
 	
 	@ManyToMany(fetch = FetchType.LAZY,
 		      cascade =CascadeType.ALL
@@ -45,7 +45,7 @@ public class Sport {
 		  @JoinTable(name = "sports_managersubscription",
 		        joinColumns = { @JoinColumn(name = "sport_id") },
 		        inverseJoinColumns = { @JoinColumn(name = "managersubscription_id") })
-		  private Set<Manager_subscription> manager_subscription1 = new HashSet<>();
+		  private Set<ManagerSubscription> manager_subscription1 = new HashSet<>();
 
 		  @ManyToOne
 		  @JsonBackReference(value="sport")
@@ -62,48 +62,35 @@ public class Sport {
 
 
 
-		public Sport(int sport_id, String sportname, Set<Manager_subscription> manager_subscription1, Admin adm) {
+		public Sport(int sportId, String sportName, Admin adm) {
 			super();
-			this.sport_id = sport_id;
-			this.sportname = sportname;
-			this.manager_subscription1 = manager_subscription1;
+			this.sportId = sportId;
+			this.sportName = sportName;
 			this.adm = adm;
 		}
 
 
 
-		public int getSport_id() {
-			return sport_id;
+		public int getSportId() {
+			return sportId;
 		}
 
 
 
-		public void setSport_id(int sport_id) {
-			this.sport_id = sport_id;
+		public void setSportId(int sportId) {
+			this.sportId = sportId;
 		}
 
 
 
-		public String getSportname() {
-			return sportname;
+		public String getSportName() {
+			return sportName;
 		}
 
 
 
-		public void setSportname(String sportname) {
-			this.sportname = sportname;
-		}
-
-
-
-		public Set<Manager_subscription> getManager_subscription1() {
-			return manager_subscription1;
-		}
-
-
-
-		public void setManager_subscription1(Set<Manager_subscription> manager_subscription1) {
-			this.manager_subscription1 = manager_subscription1;
+		public void setSportName(String sportName) {
+			this.sportName = sportName;
 		}
 
 
@@ -122,14 +109,13 @@ public class Sport {
 
 		@Override
 		public String toString() {
-			return "Sport [sport_id=" + sport_id + ", sportname=" + sportname + ", manager_subscription1="
-					+ manager_subscription1 + ", adm=" + adm + "]";
+			return "Sport [sportId=" + sportId + ", sportName=" + sportName + ", adm=" + adm + "]";
 		}
 
 
 
 
-
+		
 		
 
 		

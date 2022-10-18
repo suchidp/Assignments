@@ -12,7 +12,7 @@ import com.cybage.models.Player;
 import com.cybage.models.Sport;
 
 @Service
-public class Managerservice {
+public class ManagerService {
 	
 	@Autowired
 	ManagerDao managerdao;
@@ -27,9 +27,9 @@ public class Managerservice {
 	}
 	
 	
-	public Manager getManagertById(int manager_id) {
+	public Manager getManagertById(int managerId) {
 		
-		return managerdao.findById(manager_id).get();
+		return managerdao.findById(managerId).get();
 	}
 
 	/*
